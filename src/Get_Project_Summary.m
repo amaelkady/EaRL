@@ -40,7 +40,7 @@ SummaryText{i}='';i=i+1;
 if BuildingDataStatus==1
     SummaryText{i}='BUILDING DESCRIPTION';i=i+1;
     SummaryText{i}='------------------------------------------------------';i=i+1;
-    SummaryText{i}=[BuildingDescription];i=i+1;
+    SummaryText{i}=char(BuildingDescription);i=i+1;
     SummaryText{i}='';i=i+1;
     SummaryText{i}='BUILDING DATA';i=i+1;
     SummaryText{i}='------------------------------------------------------';i=i+1;
