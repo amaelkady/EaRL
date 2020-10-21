@@ -15,4 +15,4 @@ If you are a developer who plan on collaborating and contributing to EaRL base c
 Citation:
 ---------
 
-Elkady, A. and Lignos, D. G. (2020). " EaRL - Software for Earthquake Risk, Loss and Lifecycle Analysis." SoftwareX, (accepted).
+Elkady, A. and Lignos, D. G. (2020). " EaRL - Software for Earthquake Risk, Loss and Lifecycle Analysis." SoftwareX: 12. DOI: 10.1016/j.softx.2020.100607.
