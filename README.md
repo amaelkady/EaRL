@@ -6,7 +6,7 @@ EaRL is an open source MATLAB-based platform/software for earthquake risk, loss 
 
 --> Video tutorials on YouTube: https://www.youtube.com/playlist?list=PLz_XdUL-6Y_nbmyXU7Pcdg_XDwvwgGXjF
 
-If you are a developer who plan on collaborating and contributing to EaRL base code, you are recommended to install GitHub Desktop application and then FORK this repository to your own computer and work on it there. PULL requests will be considered while giving credit to contributers. To fork the repo click on the FORK at the top of this page.
+If you are a developer who plan on collaborating and contributing to EaRL codebase, you are recommended to install GitHub Desktop application and then FORK this repository to your own computer and work on it locally. PULL requests will be considered while giving credit to contributers. To fork the repository click on "FORK" at the top of this page.
 
 --> Brief outline on forking, we suggest: https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow
 
