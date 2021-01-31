@@ -13,9 +13,9 @@ app.ProgressBar.BackgroundColor='w';
 pause(0.5);
 
 %%
-                         MIDPTS.SSDR=RANGE.SDR(1:end-1)+diff(RANGE.SDR)/2;
-                         MIDPTS.SPFA=RANGE.PFA(1:end-1)+diff(RANGE.PFA)/2;
-                         MIDPTS.SRDR=RANGE.RDR(1:end-1)+diff(RANGE.RDR)/2;
+                         MIDPTS.SDR=RANGE.SDR(1:end-1)+diff(RANGE.SDR)/2;
+                         MIDPTS.PFA=RANGE.PFA(1:end-1)+diff(RANGE.PFA)/2;
+                         MIDPTS.RDR=RANGE.RDR(1:end-1)+diff(RANGE.RDR)/2;
 if Data_Status.VRD==1;   MIDPTS.VRD=RANGE.VRD  (1:end-1)+diff(RANGE.VRD)/2;     end
 
 %----------------------------------------------------------------------------------------------------------------------------------------------%
