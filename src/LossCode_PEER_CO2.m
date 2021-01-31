@@ -78,19 +78,19 @@ end
 SC_EDPval_Typ_FAD     = cell2mat(costfun(indxSystem*indxFloorArea).costpar(:,1));
 SC_COSTvals_Typ_FAD   = cell2mat(costfun(indxSystem*indxFloorArea).costpar(:,3));
 SC_COSTmedian_Typ_FAD = SC_COSTvals_Typ_FAD(:,1);
-SC_COSTmedian_Typ_FAD_PerEDPrange =pchip(SC_EDPval_Typ_FAD,SC_COSTmedian_Typ_FAD, MIDPTS.SSDR);
+SC_COSTmedian_Typ_FAD_PerEDPrange =pchip(SC_EDPval_Typ_FAD,SC_COSTmedian_Typ_FAD, MIDPTS.SDR);
             
 % Structural Floor-Area-Dependant (FAD) Repair Costs: Ground Floor
 SC_EDPval_Ground_FAD     = cell2mat(costfun(10).costpar(:,1));
 SC_COSTvals_Ground_FAD   = cell2mat(costfun(10).costpar(:,3));
 SC_COSTmedian_Ground_FAD = SC_COSTvals_Ground_FAD(:,1);
-SC_COSTmedian_Ground_FAD_PerEDPrange =pchip(SC_EDPval_Ground_FAD,SC_COSTmedian_Ground_FAD, MIDPTS.SSDR);
+SC_COSTmedian_Ground_FAD_PerEDPrange =pchip(SC_EDPval_Ground_FAD,SC_COSTmedian_Ground_FAD, MIDPTS.SDR);
 
 % Non-Structural SDR-Sensitive Floor-Area-Dependant (FAD) Repair Costs: Typical Story
 NSC_SDR_EDPval_Typ_FAD     = cell2mat(costfun(11).costpar(:,1));
 NSC_SDR_COSTvals_Typ_FAD   = cell2mat(costfun(11).costpar(:,3));
 NSC_SDR_COSTmedian_Typ_FAD = NSC_SDR_COSTvals_Typ_FAD(:,1);
-NSC_SDR_COSTmedian_Typ_FAD_PerEDPrange =pchip(NSC_SDR_EDPval_Typ_FAD,NSC_SDR_COSTmedian_Typ_FAD, MIDPTS.SSDR);
+NSC_SDR_COSTmedian_Typ_FAD_PerEDPrange =pchip(NSC_SDR_EDPval_Typ_FAD,NSC_SDR_COSTmedian_Typ_FAD, MIDPTS.SDR);
 
 % Non-Structural ACC-Sensitive Total-Area-Dependant (TAD) Repair Costs: Typical Story
 NSC_ACC_EDPval_Ground_TAD     = cell2mat(costfun(11+indxTotalArea).costpar(:,1));
