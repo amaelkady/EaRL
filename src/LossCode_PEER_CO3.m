@@ -139,14 +139,14 @@ for im=1:nIMpoints  % Loop over IM levels
                 PEDP_SDR=logncdf(RANGE.SDR,log(0.00001),0.01);
                 DPEDP_SDR=abs(diff(PEDP_SDR));
             else
-                PEDP_SDR=logncdf(RANGE.SDR,log(MEDIAN_IM.SDR(im,n)),SIGMA_IM.SDR(im,n));
+                evalc(['PEDP_SDR=logncdf(RANGE.SDR,log(EDP_Data.SDRmedian.S',num2str(Stripe),'(1,n)),EDP_Data.SDRsigma.S',num2str(Stripe),'(1,n))']);
                 DPEDP_SDR=abs(diff(PEDP_SDR));                
             end
 
-            PEDP_PFA=logncdf(RANGE.PFA,log(MEDIAN_IM.PFA(im,n)),SIGMA_IM.PFA(im,n));
+            evalc(['PEDP_PFA=logncdf(RANGE.PFA,log(EDP_Data.PFAmedian.S',num2str(Stripe),'(1,n)),EDP_Data.PFAsigma.S',num2str(Stripe),'(1,n))']);
             DPEDP_PFA=abs(diff(PEDP_PFA));
 
-            PEDP_PGA=logncdf(RANGE.PFA,log(MEDIAN_IM.PFA(im,1)),SIGMA_IM.PFA(im,1));
+            evalc(['PEDP_PGA=logncdf(RANGE.PFA,log(EDP_Data.PFAmedian.S',num2str(Stripe),'(1,1)),EDP_Data.PFAsigma.S',num2str(Stripe),'(1,1))']);
             DPEDP_PGA=abs(diff(PEDP_PGA));
 
             if     n==1;            Ground_Flag=1; Typ_Flag=0; Roof_Flag=0; SC_Flag=1;
