@@ -18,28 +18,38 @@ if RunMethodology==1
         end
     end
     
-    % Get Repair cost losses for SC and NSC at target IM
-    INDX_SC      =find(indexSa1==DEAGG_DATA(:,1) & DEAGG_DATA(:,5)==1);
-    INDX_NSC_SDR =find(indexSa1==DEAGG_DATA(:,1) & DEAGG_DATA(:,5)==2);
-    INDX_NSC_ACC =find(indexSa1==DEAGG_DATA(:,1) & DEAGG_DATA(:,5)==3);
-    
-    SUM=0.0;
-    for k=1:size(INDX_SC,1)
-        SUM=SUM+DEAGG_DATA(INDX_SC(k,1),4);
+    if Component_Option==1
+        % Get Repair cost losses for SC and NSC at target IM
+        INDX_SC      =find(indexSa1==DEAGG_DATA(:,1) & DEAGG_DATA(:,5)==1);
+        INDX_NSC_SDR =find(indexSa1==DEAGG_DATA(:,1) & DEAGG_DATA(:,5)==2);
+        INDX_NSC_ACC =find(indexSa1==DEAGG_DATA(:,1) & DEAGG_DATA(:,5)==3);
+        
+        SUM=0.0;
+        for k=1:size(INDX_SC,1)
+            SUM=SUM+DEAGG_DATA(INDX_SC(k,1),4);
+        end
+        REPAIR_COST_SC=SUM;
+        
+        SUM=0.0;
+        for k=1:size(INDX_NSC_SDR,1)
+            SUM=SUM+DEAGG_DATA(INDX_NSC_SDR(k,1),4);
+        end
+        REPAIR_COST_NSC_SDR=SUM;
+        
+        SUM=0.0;
+        for k=1:size(INDX_NSC_ACC,1)
+            SUM=SUM+DEAGG_DATA(INDX_NSC_ACC(k,1),4);
+        end
+        REPAIR_COST_NSC_ACC=SUM;
+        
+    else
+        % Get Repair cost losses for SC and NSC at target IM
+        INDX      =find(indexSa1==DEAGG_DATA(:,1));
+        
+        REPAIR_COST_SC=DEAGG_DATA(INDX(k,1),4);
+        REPAIR_COST_NSC_SDR=DEAGG_DATA(INDX(k,1),5);
+        REPAIR_COST_NSC_ACC=DEAGG_DATA(INDX(k,1),6);
     end
-    REPAIR_COST_SC=SUM;
-    
-    SUM=0.0;
-    for k=1:size(INDX_NSC_SDR,1)
-        SUM=SUM+DEAGG_DATA(INDX_NSC_SDR(k,1),4);
-    end
-    REPAIR_COST_NSC_SDR=SUM;
-    
-    SUM=0.0;
-    for k=1:size(INDX_NSC_ACC,1)
-        SUM=SUM+DEAGG_DATA(INDX_NSC_ACC(k,1),4);
-    end
-    REPAIR_COST_NSC_ACC=SUM;
     
     X = [COLLAPSE_LOSSES_Per_IM(indexSa1,1) DEMOLITION_LOSSES_Per_IM(indexSa1,1) REPAIR_COST_SC REPAIR_COST_NSC_SDR REPAIR_COST_NSC_ACC];
     

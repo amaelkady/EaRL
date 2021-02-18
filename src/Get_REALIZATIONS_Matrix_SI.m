@@ -22,6 +22,11 @@ function [REALIZATIONS] = Get_REALIZATIONS_Matrix_SI(EDP_Data,EDP_Type,REALIZATI
         Ryy=CorrEDP;
     end
     
+    try
+        chol(Ryy);
+    catch ME
+        errordlg(['The response data for ',EDP_Type,' will not yield a positive definitie correlation matrix. Consider revising the data or using the "Parameter" option instead to define the EDP data and the correlation matrix directly.'],'Problem Ahead!')
+    end    
     Ly=chol(Ryy)';
 
     counter=1;

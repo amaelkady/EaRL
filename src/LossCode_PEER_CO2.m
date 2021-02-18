@@ -132,6 +132,7 @@ NSC_SDR_REPAIR_COST_PerIM   = zeros(nIMpoints,1);
 NSC_ACC_REPAIR_COST_PerIM   = zeros(nIMpoints,1); 
 REPAIR_COST_TOTAL_PerIM     = zeros(nIMpoints,1);  
 
+counter=1;
 Stripe=0;
 for im=1:nIMpoints  % Loop over IM levels
     if ismember(IMpoints(1,im),TargetIM)
@@ -211,6 +212,14 @@ for im=1:nIMpoints  % Loop over IM levels
             STORY_REPAIR_COST_NSC_ACC(im,n) = PRNC_NSC_ACC1 + PRNC_NSC_ACC2 + PRNC_NSC_ACC3 + PRNC_NSC_ACC4 + PRNC_NSC_ACC5;            
             STORY_REPAIR_COST(im,n) = STORY_REPAIR_COST_SC(im,n) + STORY_REPAIR_COST_NSC_SDR(im,n) + STORY_REPAIR_COST_NSC_ACC(im,n);            
 
+            DEAGG_DATA(counter,1)=im;            
+            DEAGG_DATA(counter,2)=n;
+            DEAGG_DATA(counter,3)=0;
+            DEAGG_DATA(counter,4)=sum(STORY_REPAIR_COST_SC(im,:));
+            DEAGG_DATA(counter,5)=sum(STORY_REPAIR_COST_NSC_SDR(im,:));
+            DEAGG_DATA(counter,6)=sum(STORY_REPAIR_COST_NSC_ACC(im,:));
+            counter=counter+1;
+            
             clear PEDP_SDR PEDP_ACC PEDP_PGA DPEDP_SDR DPEDP_ACC DPEDP_PGA;  	% Clear these variables before going to the next story
 
         end
@@ -225,6 +234,8 @@ REPAIR_COST_TOTAL_PerIM(:,1)   = SC_REPAIR_COST_PerIM(:,1) + NSC_SDR_REPAIR_COST
 TOTAL_LOSSES_PerIM = COLLAPSE_LOSSES_Per_IM + DEMOLITION_LOSSES_Per_IM + REPAIR_COST_TOTAL_PerIM;
 
 cd (ProjectPath)
+save(ProjectName,'DEAGG_DATA','-append');
+pause(0.5);
 save(ProjectName,'STORY_REPAIR_COST','STORY_REPAIR_COST_SC','STORY_REPAIR_COST_NSC_SDR','STORY_REPAIR_COST_NSC_ACC','-append');
 pause(0.5);
 save(ProjectName,'SC_REPAIR_COST_PerIM','NSC_SDR_REPAIR_COST_PerIM','NSC_ACC_REPAIR_COST_PerIM','REPAIR_COST_TOTAL_PerIM','TOTAL_LOSSES_PerIM','-append');
