@@ -1,4 +1,6 @@
-function [HStory, Load, Mass, Parameters] = Import_ShearModel_Data_from_Excel(ModelType, ExcelFileName, N_Story)
+function [HStory, Load, Mass, Parameters] = Import_ShearModel_Data_from_Excel(ModelType, ExcelFilePath, ExcelFileName, N_Story)
+
+cd(ExcelFilePath)
 
 if ModelType==1; SheetName='Elastic';           nParameters=1; end
 if ModelType==2; SheetName='Bilinear';          nParameters=3; end
