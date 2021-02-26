@@ -59,7 +59,7 @@ MaxEDP = max(MedianEDP);
 plot(MedianEDP,Elevation,'-or','linewidth',2);
 for i=1:N_Story
     rangex=0:0.001:2.0;
-    y=logncdf(rangex,log(MedianEDP(1,i)),SigmaEDP);
+    y=logncdf(rangex,log(MedianEDP(1,i)),SigmaEDP(1,i));
     INDX=min(find(y>=0.98));
     x16=interp1(y(1,1:INDX),rangex(1,1:INDX),0.16);
     x84=interp1(y(1,1:INDX),rangex(1,1:INDX),0.84);
