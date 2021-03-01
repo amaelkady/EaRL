@@ -59,12 +59,16 @@ MaxEDP = max(MedianEDP);
 plot(MedianEDP,Elevation,'-or','linewidth',2);
 for i=1:N_Story
     rangex=0:0.001:2.0;
+    if MedianEDP(1,1)~=0
     y=logncdf(rangex,log(MedianEDP(1,i)),SigmaEDP(1,i));
     INDX=min(find(y>=0.98));
     x16=interp1(y(1,1:INDX),rangex(1,1:INDX),0.16);
     x84=interp1(y(1,1:INDX),rangex(1,1:INDX),0.84);
     plot([x16 x84],[Elevation(1,i) Elevation(1,i)],'--ok','linewidth',1,'Markerfacecolor','b');            
     MaxEDP = max(MaxEDP,x84);
+    else
+    plot([0 0],[Elevation(1,i) Elevation(1,i)],'--ok','linewidth',1,'Markerfacecolor','b');                    
+    end
 end
 h=legend('Median','16^t^h & 84^t^h percentile');
 
