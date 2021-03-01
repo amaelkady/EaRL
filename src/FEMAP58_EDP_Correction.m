@@ -28,10 +28,9 @@ end
 
 % Get RDR values
 for i=1:N_Story
-    if EDP_Data.SDRmedian.S1(1,i)<=SDRy; EDP_Data.RDRmedian.S1(1,i)=0; end
+    if EDP_Data.SDRmedian.S1(1,i)<=SDRy;                                      EDP_Data.RDRmedian.S1(1,i)=0; end
     if EDP_Data.SDRmedian.S1(1,i)>SDRy && EDP_Data.SDRmedian.S1(1,i)<=4*SDRy; EDP_Data.RDRmedian.S1(1,i)=0.3*(EDP_Data.SDRmedian.S1(1,i)-SDRy); end
-    if EDP_Data.SDRmedian.S1(1,i)>4*SDRy; EDP_Data.RDRmedian.S1(1,i)=EDP_Data.SDRmedian.S1(1,i)-3*SDRy; end
-    EDP_Data.RDRmedian.S1(1,i)=max(EDP_Data.RDRmedian.S1);
+    if EDP_Data.SDRmedian.S1(1,i)>4*SDRy;                                     EDP_Data.RDRmedian.S1(1,i)=EDP_Data.SDRmedian.S1(1,i)-3*SDRy; end
 end
 
 % Get PFV values
