@@ -31,8 +31,8 @@ for i=1:N_Story
     if EDP_Data.SDRmedian.S1(1,i)<=SDRy; EDP_Data.RDRmedian.S1(1,i)=0; end
     if EDP_Data.SDRmedian.S1(1,i)>SDRy && EDP_Data.SDRmedian.S1(1,i)<=4*SDRy; EDP_Data.RDRmedian.S1(1,i)=0.3*(EDP_Data.SDRmedian.S1(1,i)-SDRy); end
     if EDP_Data.SDRmedian.S1(1,i)>4*SDRy; EDP_Data.RDRmedian.S1(1,i)=EDP_Data.SDRmedian.S1(1,i)-3*SDRy; end
+    EDP_Data.RDRmedian.S1(1,i)=max(EDP_Data.RDRmedian.S1);
 end
-EDP_Data.RDRmedian.S1=max(EDP_Data.RDRmedian.S1);
 
 % Get PFV values
 if Units==1; g=386; else g=9.81; end
@@ -68,12 +68,12 @@ for i=1:5
 end
 EDP_Data.SDRsigma.S1(1,1:N_Story)=sqrt(Beta_ad(row,col)^2+Beta_m(1,col)^2);
 EDP_Data.PFAsigma.S1(1,1:N_Story+1)=sqrt(Beta_aa(row,col)^2+Beta_m(1,col)^2);
-EDP_Data.RDRsigma.S1(1,1)=sqrt(0.8^2+0.2^2);
+EDP_Data.RDRsigma.S1(1,1:N_Story)=sqrt(0.8^2+0.2^2);
 EDP_Data.PFVsigma.S1(1,1:N_Story+1)=sqrt(Beta_av(row,col)^2+Beta_m(1,col)^2);
 
 EDP_Data.SDRcorr=eye(N_Story);
 EDP_Data.PFAcorr=eye(N_Story+1);
-EDP_Data.RDRcorr=1;
+EDP_Data.RDRcorr=eye(N_Story);
 EDP_Data.PFVcorr=eye(N_Story+1);
 
 end
