@@ -96,32 +96,32 @@ NSC_SDR_COSTmedian_Typ_FAD_PerEDPrange =pchip(NSC_SDR_EDPval_Typ_FAD,NSC_SDR_COS
 NSC_ACC_EDPval_Ground_TAD     = cell2mat(costfun(11+indxTotalArea).costpar(:,1));
 NSC_ACC_COSTvals_Ground_TAD   = cell2mat(costfun(11+indxTotalArea).costpar(:,3));
 NSC_ACC_COSTmedian_Ground_TAD = NSC_ACC_COSTvals_Ground_TAD(:,1);
-NSC_ACC_COSTmedian_Ground_TAD_PerEDPrange =pchip(NSC_ACC_EDPval_Ground_TAD,NSC_ACC_COSTmedian_Ground_TAD, MIDPTS.SPFA);
+NSC_ACC_COSTmedian_Ground_TAD_PerEDPrange =pchip(NSC_ACC_EDPval_Ground_TAD,NSC_ACC_COSTmedian_Ground_TAD, MIDPTS.PFA);
 
 % Non-Structural ACC-Sensitive Floor-Area-Dependant (FAD) Repair Costs: Typical Story
 NSC_ACC_EDPval_Typ_FAD     = cell2mat(costfun(15).costpar(:,1));
 NSC_ACC_COSTvals_Typ_FAD   = cell2mat(costfun(15).costpar(:,3));
 NSC_ACC_COSTmedian_Typ_FAD = NSC_ACC_COSTvals_Typ_FAD(:,1);
-NSC_ACC_COSTmedian_Typ_FAD_PerEDPrange =pchip(NSC_ACC_EDPval_Typ_FAD,NSC_ACC_COSTmedian_Typ_FAD, MIDPTS.SPFA);
+NSC_ACC_COSTmedian_Typ_FAD_PerEDPrange =pchip(NSC_ACC_EDPval_Typ_FAD,NSC_ACC_COSTmedian_Typ_FAD, MIDPTS.PFA);
 
 % Non-Structural ACC-Sensitive Floor-Area-Dependant (FAD) Repair Costs: Roof
 NSC_ACC_EDPval_Roof_FAD     = cell2mat(costfun(16).costpar(:,1));
 NSC_ACC_COSTvals_Roof_FAD   = cell2mat(costfun(16).costpar(:,3));
 NSC_ACC_COSTmedian_Roof_FAD = NSC_ACC_COSTvals_Roof_FAD (:,1);
-NSC_ACC_COSTmedian_Roof_FAD_PerEDPrange =pchip(NSC_ACC_EDPval_Roof_FAD,NSC_ACC_COSTmedian_Roof_FAD, MIDPTS.SPFA);
+NSC_ACC_COSTmedian_Roof_FAD_PerEDPrange =pchip(NSC_ACC_EDPval_Roof_FAD,NSC_ACC_COSTmedian_Roof_FAD, MIDPTS.PFA);
 
 % Non-Structural ACC-Sensitive Total-Area-Dependant (TAD) Repair Costs:Roof
 % ONLY IF TOTAL AREA > 5000 m2
 NSC_ACC_EDPval_Roof_TAD     = cell2mat(costfun(17).costpar(:,1));
 NSC_ACC_COSTvals_Roof_TAD   = cell2mat(costfun(17).costpar(:,3));
 NSC_ACC_COSTmedian_Roof_TAD = NSC_ACC_COSTvals_Roof_TAD(:,1);
-NSC_ACC_COSTmedian_Roof_TAD_PerEDPrange =pchip(NSC_ACC_EDPval_Roof_TAD,NSC_ACC_COSTmedian_Roof_TAD, MIDPTS.SPFA);
+NSC_ACC_COSTmedian_Roof_TAD_PerEDPrange =pchip(NSC_ACC_EDPval_Roof_TAD,NSC_ACC_COSTmedian_Roof_TAD, MIDPTS.PFA);
 
 % Non-Structural ACC-Sensitive Floor-Area-Dependant (FAD) Contents Repair Costs: Typical Story 
 NSC_ACC_CONTENTS_EDPval_Typ_FAD     = cell2mat(costfun(17+indxLuxury).costpar(:,1));
 NSC_ACC_CONTENTS_COSTvals_Typ_FAD   = cell2mat(costfun(17+indxLuxury).costpar(:,3));
 NSC_ACC_CONTENTS_COSTmedian_Typ_FAD = NSC_ACC_CONTENTS_COSTvals_Typ_FAD(:,1);
-NSC_ACC_CONTENTS_COSTmedian_Typ_FAD_PerEDPrange =pchip(NSC_ACC_CONTENTS_EDPval_Typ_FAD,NSC_ACC_CONTENTS_COSTmedian_Typ_FAD, MIDPTS.SPFA);
+NSC_ACC_CONTENTS_COSTmedian_Typ_FAD_PerEDPrange =pchip(NSC_ACC_CONTENTS_EDPval_Typ_FAD,NSC_ACC_CONTENTS_COSTmedian_Typ_FAD, MIDPTS.PFA);
 
 STORY_REPAIR_COST_SC        = zeros(nIMpoints,N_Story+1);
 STORY_REPAIR_COST_NSC_SDR   = zeros(nIMpoints,N_Story+1);
