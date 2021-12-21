@@ -25,18 +25,20 @@ function [REALIZATIONS] = Get_REALIZATIONS_Matrix_SI(EDP_Data,EDP_Type,REALIZATI
 
     
     try
-        chol(Ryy);
+        Ly = chol(Ryy)';
     catch ME
         % Fix for highly correlated input data
         %Ryy=round(Ryy*1000)/1000;
-         Imat=eye(size(Ryy, 1));       
-         Xmat=zeros(size(Ryy, 1))+0.99;
-         Ryy=Imat+Xmat;
-         Ryy(Ryy>1)=1;
+        %Imat=eye(size(Ryy, 1));       
+        %Xmat=zeros(size(Ryy, 1))+0.99;
+        %Ryy=Imat+Xmat;
+        %Ryy(Ryy>1)=1;
         %errordlg(['The response data for ',EDP_Type,' will not yield a positive definitie correlation matrix. Consider revising the data or using the "Parameter" option instead to define the EDP data and the correlation matrix directly.'],'Problem Ahead!')
+        [~,Ly] = lu(Ryy);
+        Ly=Ly';
     end    
-    Ly=chol(Ryy)';
 
+    
     counter=1;
     for i=1:nRealizationx
         RndVarVectorX=RndVarVector(i:i+size2-1,1);

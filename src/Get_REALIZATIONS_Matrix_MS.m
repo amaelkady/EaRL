@@ -8,8 +8,14 @@ function [REALIZATIONS] = Get_REALIZATIONS_Matrix_MS(EDP_Data,EDP_Type,REALIZATI
     My=mean(Y)';
     Dy=diag(sqrt(std(Y).^2+stdAdd^2));
     Ryy=corrcoef(Y);
-    Ly=chol(Ryy)';
-
+    
+    try
+        Ly=chol(Ryy)';
+    catch ME
+        [~,Ly] = lu(Ryy);
+        Ly=Ly';
+    end
+    
     counter=1;
     for i=1:nRealizationx
         RndVarVectorX=RndVarVector(i:i+size2-1,1);
