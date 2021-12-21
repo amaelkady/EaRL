@@ -46,9 +46,9 @@ if RunMethodology==1
         % Get Repair cost losses for SC and NSC at target IM
         INDX      =find(indexSa1==DEAGG_DATA(:,1));
         
-        REPAIR_COST_SC=DEAGG_DATA(INDX(k,1),4);
-        REPAIR_COST_NSC_SDR=DEAGG_DATA(INDX(k,1),5);
-        REPAIR_COST_NSC_ACC=DEAGG_DATA(INDX(k,1),6);
+        REPAIR_COST_SC=sum(DEAGG_DATA(INDX,4));
+        REPAIR_COST_NSC_SDR=sum(DEAGG_DATA(INDX,5));
+        REPAIR_COST_NSC_ACC=sum(DEAGG_DATA(INDX,6));
     end
     
     X = [COLLAPSE_LOSSES_Per_IM(indexSa1,1) DEMOLITION_LOSSES_Per_IM(indexSa1,1) REPAIR_COST_SC REPAIR_COST_NSC_SDR REPAIR_COST_NSC_ACC];
