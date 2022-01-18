@@ -58,8 +58,8 @@ if strcmp(EDP_Type,'SDR')==1 || strcmp(EDP_Type,'RDR')==1 || strcmp(EDP_Type,'CO
         % Sort SA values at Drift values and then Calculate the 16th, 84th and Median
         SA_Interp_EDP=sort(SA_Interp_EDP); 
         Median50_Interp_EDP (counter) =  median(SA_Interp_EDP);
-        Median16_Interp_EDP (counter) = (SA_Interp_EDP(ceil(0.16*GM_No))+SA_Interp_EDP(floor(0.16*GM_No)))/2;  
-        Median84_Interp_EDP (counter) = (SA_Interp_EDP(ceil(0.84*GM_No))+SA_Interp_EDP(floor(0.84*GM_No)))/2;  
+        Median16_Interp_EDP (counter) = (SA_Interp_EDP(ceil(0.16*GM_No))+SA_Interp_EDP(max(1,floor(0.16*GM_No))))/2;  
+        Median84_Interp_EDP (counter) = (SA_Interp_EDP(ceil(0.84*GM_No))+SA_Interp_EDP(max(1,floor(0.84*GM_No))))/2;  
         MaxEDP_Vector       (counter) = DR;
 
         counter = counter + 1;
@@ -137,8 +137,8 @@ if strcmp(EDP_Type,'PFA')==1
         % Sort SA values at Drift values and then Calculate the 16th, 84th and Median
         SA_Interp_EDP=sort(SA_Interp_EDP); 
         Median50_Interp_EDP (counter) =  median(SA_Interp_EDP);
-        Median16_Interp_EDP (counter) = (SA_Interp_EDP(ceil(0.16*N_GM))+SA_Interp_EDP(floor(0.16*N_GM)))/2;  
-        Median84_Interp_EDP (counter) = (SA_Interp_EDP(ceil(0.84*N_GM))+SA_Interp_EDP(floor(0.84*N_GM)))/2;  
+        Median16_Interp_EDP (counter) = (SA_Interp_EDP(ceil(0.16*N_GM))+SA_Interp_EDP(max(1,floor(0.16*N_GM))))/2;  
+        Median84_Interp_EDP (counter) = (SA_Interp_EDP(ceil(0.84*N_GM))+SA_Interp_EDP(max(1,floor(0.84*N_GM))))/2;  
         MaxEDP_Vector       (counter) =  SAval;
 
         counter = counter + 1;
@@ -212,8 +212,8 @@ if strcmp(EDP_Type,'VRD')==1
         % Sort SA values at Drift values and then Calculate the 16th, 84th and Median
         SA_Interp_EDP=sort(SA_Interp_EDP); 
         Median50_Interp_VRD(counter)=median(SA_Interp_EDP);
-        Median16_Interp_VRD(counter)=(SA_Interp_EDP(ceil(0.16*N_GM))+SA_Interp_EDP(floor(0.16*N_GM)))/2;  
-        Median84_Interp_VRD(counter)=(SA_Interp_EDP(ceil(0.84*N_GM))+SA_Interp_EDP(floor(0.84*N_GM)))/2;  
+        Median16_Interp_VRD(counter)=(SA_Interp_EDP(ceil(0.16*N_GM))+SA_Interp_EDP(max(1,floor(0.16*N_GM))))/2;  
+        Median84_Interp_VRD(counter)=(SA_Interp_EDP(ceil(0.84*N_GM))+SA_Interp_EDP(max(1,floor(0.84*N_GM))))/2;  
         MaxEDP_Vector (counter)=VRD;
 
         counter = counter + 1;
