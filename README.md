@@ -9,14 +9,14 @@ EaRL is an open source MATLAB-based platform/software for earthquake risk, loss 
 
 --> Curent compiled installer executable: v1.2201
 
---> Video tutorials on YouTube: https://www.youtube.com/playlist?list=PLz_XdUL-6Y_nbmyXU7Pcdg_XDwvwgGXjF
+--> Video tutorials on this YouTube [playlist](https://www.youtube.com/playlist?list=PLz_XdUL-6Y_nbmyXU7Pcdg_XDwvwgGXjF)
 
 ## Notes
 If you are a developer who plan on collaborating and contributing to EaRL codebase, you are recommended to install GitHub Desktop application and then FORK this repository to your own computer and work on it locally. PULL requests will be considered while giving credit to contributers. To fork the repository click on "FORK" at the top of this page.
 
---> Brief outline on forking, we suggest: https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow
+--> Brief outline on forking, we suggest this [link](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow)
 
---> Full introduction to Git and GitHub, we suggest watching this playlist: https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV
+--> Full introduction to Git and GitHub, we suggest watching this [playlist](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV)
 
 ## Citation
-Elkady, A. and Lignos, D. G. (2020). " EaRL - Software for Earthquake Risk, Loss and Lifecycle Analysis." SoftwareX: 12. DOI: 10.1016/j.softx.2020.100607.
+Elkady, A. and Lignos, D. G. (2020). " EaRL - Software for Earthquake Risk, Loss and Lifecycle Analysis." SoftwareX: 12. DOI: [10.1016/j.softx.2020.100607](https://www.sciencedirect.com/science/article/pii/S2352711020303204).
