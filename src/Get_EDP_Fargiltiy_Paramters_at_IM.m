@@ -124,7 +124,7 @@ for i=size(MedianEDP,1):-1:2
     for Storyi=1:N_Story
         flag=0;
         if MedianEDP(i,Storyi)==MedianEDP(i-1,Storyi) && flag==0
-             allindx_last_peak(Storyi)= i;
+             allindx_last_peak(Storyi)= min(nIMpoints-1,i);
         else
             flag=1;
              break;
@@ -145,7 +145,7 @@ for Storyi=1:N_Story
     AveragingIncr=floor(indx_last_peak/20);
     for i=1:nIMpoints
         if IMpoints(i,1)<SA_CPS_MAX
-            MedianEDP(i,Storyi)=mean(MedianEDP(i:i+AveragingIncr,Storyi));
+            MedianEDP(i,Storyi)=mean(MedianEDP(i:min(i+AveragingIncr,nIMpoints),Storyi));
         else
             MedianEDP(i,Storyi)=max(MedianEDP(:,Storyi));
             SigmaEDP (i,Storyi)=0.00001;
