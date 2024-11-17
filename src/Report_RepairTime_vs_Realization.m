@@ -53,7 +53,8 @@ for Ri=1:nRealization
             end
         end
     end
-    
+    MaxTimeStory=sum(MaxTimeStory,1); %% Added August 2024 to fix repair time (sequential vs simultaneous repair of different component types at the same storey/floor);
+
     if TimeModel.SchemeFloor==0; REPAIR_TIME_Per_Ri(Ri,1)=max(sum(MaxTimeStory,2));    end
     if TimeModel.SchemeFloor==1; REPAIR_TIME_Per_Ri(Ri,1)=max(max(MaxTimeStory,[],2)); end
 end

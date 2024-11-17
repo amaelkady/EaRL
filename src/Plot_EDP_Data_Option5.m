@@ -1,13 +1,9 @@
 function Plot_EDP_Data_Option5(ProjectPath, ProjectName, MainDirectory)
 
-cd(ProjectPath)
-load (ProjectName,'Option5_Type','N_GM','N_Story');
-cd(MainDirectory)
+load (strcat(ProjectPath,ProjectName),'Option5_Type','N_GM','N_Story');
 
 if Option5_Type==2 || Option5_Type==3
-    cd(ProjectPath)
-    load (ProjectName,'EDP_Data');
-    cd(MainDirectory)
+    load (strcat(ProjectPath,ProjectName),'EDP_Data');
     
     figure('position',[500 300 900 300],'color','white');
     subplot(1,3,1)
@@ -70,9 +66,7 @@ if Option5_Type==2 || Option5_Type==3
     set(gca,'YTick',Elevation)
     set(h,'fontsize',10);
 else
-    cd(ProjectPath)
-    load (ProjectName,'ResponseDataFolderPath','IDAFilename');
-    cd(MainDirectory)
+    load (strcat(ProjectPath,ProjectName),'ResponseDataFolderPath','IDAFilename');
     Plot_IDA_Data_Option5 (N_GM,MainDirectory,ResponseDataFolderPath,IDAFilename.SDR,IDAFilename.PFA,IDAFilename.RDR);
 end
 

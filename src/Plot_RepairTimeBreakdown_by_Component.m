@@ -24,14 +24,14 @@ function []= Plot_RepairTimeBreakdown_by_Component(DEAGG_DATA,C_Data,COMPDATA,N_
     
     for n=1:N_Story+1
          MaxTimeStory(1,n)=0;
-    for i=1:size(TimeModel.TimeMatrix,1)
-        if TimeModel.TimeMatrix(i,1)==0; break; end
-        for j=1:size(TimeModel.TimeMatrix(i,:),2)
-            if TimeModel.TimeMatrix(i,j)==0; break; end
-            IDX=find(CIDs==TimeModel.TimeMatrix(i,j)) ;
-            MaxTimeStory(1,n)=MaxTimeStory(1,n)+max(DEAGG_STORY_LOSS(IDX,n));
+        for i=1:size(TimeModel.TimeMatrix,1)
+            if TimeModel.TimeMatrix(i,1)==0; break; end
+            for j=1:size(TimeModel.TimeMatrix(i,:),2)
+                if TimeModel.TimeMatrix(i,j)==0; break; end
+                IDX=find(CIDs==TimeModel.TimeMatrix(i,j)) ;
+                MaxTimeStory(1,n)=MaxTimeStory(1,n)+max(DEAGG_STORY_LOSS(IDX,n));
+            end
         end
-    end
     end  
     
     

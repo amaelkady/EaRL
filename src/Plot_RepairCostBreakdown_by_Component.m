@@ -64,7 +64,8 @@ else
                 DEAGG_STORY_LOSS(i,1) = DEAGG_STORY_LOSS(i,1) + DEAGG_DATA(j,4);                      
             end
         end
-        Name(i,1)=COMPDATA.C_shortername(CIDs(i,1));
+        Name(i,1) = COMPDATA.C_shortername(CIDs(i,1));
+        ID(i,1)   = COMPDATA.C_ID(CIDs(i,1));
     end
         
     Clabel=unique(Name(:,1),'stable');

@@ -23,9 +23,7 @@ if Units==1
     end
 end
 
-cd (ProjectPath)
-save(ProjectName, 'COMPDATA', 'FRAGDATA','Units')
-cd (MainDirectory)
+save(strcat(ProjectPath,ProjectName), 'COMPDATA', 'FRAGDATA','Units')
 
 % Create porject directory and save inside it the intialized project data using
 % ProjectData.mat file
@@ -104,9 +102,7 @@ else
     RANGE.PFV = [0.0:0.01:6.0];
 end
 
-cd (ProjectPath)
-save(ProjectName, 'BuildingDataStatus', 'ComponentDataStatus','HazardDataStatus','ResponseDataStatus','LossDataStatus', 'DemolitionStatus','CollapseStatus','Placardstatus','Casualtystatus','PopModelstatus','Component_Data','IMstatus','IMstart','IMincr','IMend','IMpoints','nIMpoints','TargetIMstart','TargetIMend','TargetIM','TargetIM_Option','ResultsStatus','nStripe','N_GM','Option5_Type','Option5Data','Option6Data','Timestatus','EvalTimeOption','TimeModel','-append')
-save(ProjectName, 'Demolition_Option', 'DemolishMedianRDR','DemolishSigmaRDR','DemolishMedianVRD','DemolishSigmaVRD','DemolishCorr','CollapseSDR','CPS_Option','MedianCPS','SigmaCPS','ResponseSA','RANGE','-append')
-cd (MainDirectory)
+save(strcat(ProjectPath,ProjectName), 'BuildingDataStatus', 'ComponentDataStatus','HazardDataStatus','ResponseDataStatus','LossDataStatus', 'DemolitionStatus','CollapseStatus','Placardstatus','Casualtystatus','PopModelstatus','Component_Data','IMstatus','IMstart','IMincr','IMend','IMpoints','nIMpoints','TargetIMstart','TargetIMend','TargetIM','TargetIM_Option','ResultsStatus','nStripe','N_GM','Option5_Type','Option5Data','Option6Data','Timestatus','EvalTimeOption','TimeModel','-append')
+save(strcat(ProjectPath,ProjectName), 'Demolition_Option', 'DemolishMedianRDR','DemolishSigmaRDR','DemolishMedianVRD','DemolishSigmaVRD','DemolishCorr','CollapseSDR','CPS_Option','MedianCPS','SigmaCPS','ResponseSA','RANGE','-append')
 
 end
