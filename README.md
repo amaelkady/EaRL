@@ -2,6 +2,8 @@
   <img width="500" src="Screenshot.png" alt="EaRL Main Console">
 </p>
 
+https://github.com/user-attachments/assets/0bc93870-8cbd-4ef6-ba1d-791db6efc243
+
 ---------------
 
 ## EaRL
