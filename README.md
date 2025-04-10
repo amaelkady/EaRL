@@ -1,10 +1,7 @@
 <p align="center">
-  <img width="500" src="Screenshot.png" alt="EaRL Main Console">
+  <img width="500" src="misc\Screenshot.png" alt="EaRL Main Console">
+  <img width="500" src="misc\EaRLvisulization-gif.gif" alt="EaRL Visualization">
 </p>
-
-![EaRLvisulization-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/11cf129b-574d-4470-9bfb-fd8aabb9b4f3)
-
----------------
 
 ## EaRL
 EaRL is an open source MATLAB-based platform/software for earthquake risk, loss and lifecycle analysis. EaRL provides an interactive and user-friendly platform for evaluating the economic consequences of natural hazards in general, and seismic hazard in particular, on building assets, in support of the performance-based earthquake engineering framework (e.g., FEMA P-58). The platform is supported by a comprehensive library for visualizing and reporting the disaggregated economic losses (repair cost, repair time, injuries, casualties, etc). Being an open-source platform, developed in the popular MATLAB environment, EaRL paves the way for researchers and practicing engineers worldwide to collaborate and contribute to its metadata, functionalities and interactive features. This is further supported by the platform’s well-documented technical details and codebase.
