@@ -1,57 +1,89 @@
 function [ActiveDS] = Get_Active_DS(FRAGDATA,Ci_nDS,IDXF,Ri_EDP)
 
-ActiveDS=0; 
+% This code still does not consider cases of where mutually exclusive DSs
+% are nested with Sequential ones
+
+ActiveDS=0;
 
 RndVar_P_DS=randi(100)/100;
 
-% Loop over the component damage states
-for DSi=1:Ci_nDS
-    % Fragility lognormal curve population parameters for DSi
-    mu_EDP     = FRAGDATA.DS_EDPmedian(IDXF(DSi,1));                                               % scaler value
-    sigma_EDP  = FRAGDATA.DS_EDPsigma (IDXF(DSi,1));   if sigma_EDP ==0.0; sigma_EDP=0.001;  end   % scaler value 
+%% FEMA P-58-1 Section 7.5.3
+if strcmp(FRAGDATA.DS_Hierarchy (IDXF(1,1)),'Simultaneous')==1
 
-    % if the damage states are simultaneous, then loop over all of them and sum up the repair cost of
-    % each damage state...Note that a random variable is used for each DS to check it would occur or
-    % not based on its chance of occurance
-    if strcmp(FRAGDATA.DS_Hierarchy (IDXF(DSi,1)),'Simultaneous')==1
-        P_DS_EDP   = logncdf(Ri_EDP, log(mu_EDP),    sigma_EDP);      % Probability of DSi   at the Realization EDP  (scaler value)
-        RndVar_P_DSi=randi(100)/100;
-        if RndVar_P_DS <= P_DS_EDP && RndVar_P_DSi <= FRAGDATA.DS_P (IDXF(DSi,1)) % first condition to check if DS will occur based on EDP fragility while the second condition to check if it occurs based on its chances DS_P
-            ActiveDS=DSi; 
-        end
-        break;
-    end
+    % Fragility lognormal curve population parameters for DSi (note that for the simultanous case, the EDP fragility is the same for all DS)
+    mu_EDP     = FRAGDATA.DS_EDPmedian(IDXF(1,1));                                               % scaler value
+    sigma_EDP  = FRAGDATA.DS_EDPsigma (IDXF(1,1));   if sigma_EDP ==0.0; sigma_EDP=0.001;  end   % scaler value
 
-    % Get the Number of the Next Sequential DS
-    for xx=DSi+1:Ci_nDS
-        if strcmp(FRAGDATA.DS_Hierarchy (IDXF(xx,1)),'Sequential')==1
-            DSiseq=xx;
-            break;
-        end
-    end
+    P_DS_EDP   = logncdf(Ri_EDP, log(mu_EDP),    sigma_EDP);      % Probability of DS occurance at the Realization EDP  (scaler value)
 
-    if DSi~=Ci_nDS
-       mu_EDP_2     = FRAGDATA.DS_EDPmedian(IDXF(DSiseq,1));                                                    % scaler value
-       sigma_EDP_2  = FRAGDATA.DS_EDPsigma (IDXF(DSiseq,1));   if sigma_EDP_2 ==0.0; sigma_EDP_2=0.001;  end    % scaler value 
-    end
+    if RndVar_P_DS <= P_DS_EDP         % Check if DS will occur based on EDP fragility (note that for the simultanous case, the EDP fragility is the same for all DS)
+        
+        while max(ActiveDS)==0
+            RndVar_P_DSi=randi(100)/100;    % Given that damage has occurred, a second random number is selected for each possible damage state to determine if one or more of the simultaneous damages states have occurred.
+            for DSi=1:Ci_nDS
 
-                    P_DS_EDP   = logncdf(Ri_EDP, log(mu_EDP),     sigma_EDP);     % Probability of DSi   at the Realization EDP  (scaler value)
-    if DSi~=Ci_nDS; P_DS_EDP_2 = logncdf(Ri_EDP, log(mu_EDP_2),  sigma_EDP_2);    % Probability of DSseq at the Realization EDP  (scaler value)
-    else;           P_DS_EDP_2 = 0;
-    end
+                if RndVar_P_DSi <= FRAGDATA.DS_P (IDXF(DSi,1)) % second condition to check which DSs will occur
+                    ActiveDS=[ActiveDS DSi];                    % one or more of the simultaneous damages states may occurr
+                end
 
-     % Check for being in current DS
-    if RndVar_P_DS <= P_DS_EDP && RndVar_P_DS > P_DS_EDP_2
-        % If the current DS is part of a mutually exclusive DS scenario, then a unifromly
-        % distributed random variable to find which one you will be in
-        if strcmp(FRAGDATA.DS_Hierarchy (IDXF(DSi,1)),'Mutually Exclusive')==1 && DSi~=Ci_nDS
-            RndVar_P_DSseq=randi(100)/100;
-            if RndVar_P_DSseq >= FRAGDATA.DS_P (IDXF(DSi,1))
-                DSi=DSi+1;
             end
         end
 
-        ActiveDS=DSi;
-        break;
-    end           
+        ActiveDS(1)=[]; % remove the initioal DS=0 value
+
+    else
+        ActiveDS=0; % No damage
+    end
+
+
+    %% FEMA P-58-1 Section 7.5.1
+
+elseif strcmp(FRAGDATA.DS_Hierarchy (IDXF(1,1)),'Sequential')==1
+
+    % Loop over the component damage states
+    for DSi=1:Ci_nDS
+
+        % Fragility lognormal curve population parameters for DSi
+        mu_EDP     = FRAGDATA.DS_EDPmedian(IDXF(DSi,1));                                               % scaler value
+        sigma_EDP  = FRAGDATA.DS_EDPsigma (IDXF(DSi,1));   if sigma_EDP ==0.0; sigma_EDP=0.001;  end   % scaler value
+
+        % Probability of DSi at the Realization EDP
+        P_DSi_EDP (DSi,1)   = logncdf(Ri_EDP, log(mu_EDP),     sigma_EDP);     
+
+    end
+        
+    % Probability inverse
+    P_DSi_EDP_inv = 1 - P_DSi_EDP;
+    try 
+        ActiveDS = interp1(P_DSi_EDP_inv, 1:Ci_nDS, RndVar_P_DS, 'next');
+    catch
+        ActiveDS = NaN;
+    end
+    if isnan(ActiveDS) 
+        if RndVar_P_DS <= P_DSi_EDP_inv(1)
+            ActiveDS=1;       
+        elseif RndVar_P_DS >= P_DSi_EDP_inv(end)
+            ActiveDS=Ci_nDS;
+        else
+            ActiveDS = 1;
+        end
+    end
+
+    %% FEMA P-58-1 Section 7.5.1
+
+elseif strcmp(FRAGDATA.DS_Hierarchy (IDXF(1,1)),'Mutually Exclusive')==1
+
+    for DSi = 1 : Ci_nDS
+         DS_P(DSi,1) = DSi;    
+         DS_P(DSi,2) = FRAGDATA.DS_P (IDXF(DSi,1));    
+    end
+
+    DS_P = sortrows(DS_P,2); % sort array in ascending order based on DS_P values
+
+    DS_P_Cumm = cumsum(DS_P(:,2));  % get the cummaltive probability
+
+    ActiveDS = interp1(DS_P_Cumm, DS_P(:,1), RndVar_P_DS, 'next');
+
+    if isnan(ActiveDS); ActiveDS=1; end
+
 end
