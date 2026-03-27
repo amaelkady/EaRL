@@ -8,7 +8,7 @@ EaRL is an open source MATLAB-based platform/software for earthquake risk, loss 
 
 --> Curent source code:                   v1.2505
 
---> Curent compiled installer executable: v2.2507 (**NEW RELEASE WITH DOWNTIME COMPUTATION**)
+--> Curent compiled installer executable: v2.2603 (**NEW RELEASE WITH DOWNTIME COMPUTATION**)
 
 --> Video tutorials on this YouTube [playlist](https://www.youtube.com/playlist?list=PLz_XdUL-6Y_nbmyXU7Pcdg_XDwvwgGXjF)
 
