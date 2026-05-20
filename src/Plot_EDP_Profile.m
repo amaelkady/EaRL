@@ -264,7 +264,7 @@ elseif strcmp(EDP_Type,'VRD')==1
         plot(MedianEDP,Elevation,'-or','linewidth',2);
         h=legend('Median');
     end
-    if Units==1
+    if Units==2
         xlabel ('VRD\rm [mm]');
     else
         xlabel ('VRD\rm [in]');        
@@ -559,7 +559,7 @@ elseif strcmp(EDP_Type,'GENF1')==1 || strcmp(EDP_Type,'GENF2')==1 || strcmp(EDP_
         EDP_Data    = xlsread(ExcelFileName,EDP_Type,'B3:EZ4');
         MedianEDP=EDP_Data(1,:);
         SigmaEDP=EDP_Data(2,:);
-    elseif Response_Option==3
+    elseif Response_Option==4
         EDP_Data    = xlsread(ExcelFileName,[EDP_Type,'_',num2str(Stripe)],'B3:EZ300');
         EDP_Data(N_GM+1:end,:)=[];
         nStory=size(EDP_Data,2);
@@ -601,6 +601,12 @@ elseif strcmp(EDP_Type,'GENF1')==1 || strcmp(EDP_Type,'GENF2')==1 || strcmp(EDP_
     set(gca,'Xlim',[0.0 MaxEDP+0.01]);
     set(gca,'Ylim',[0.5 N_Story+1+0.5]);
     set(gca,'YTick',Elevation)
-    set(h,'fontsize',10); 
-    
+    set(h,'fontsize',10);
+
+
 end
+
+% Inside Plot_EDP_Profile.m
+% filename = sprintf('%s_Stripe%d.png', EDP_Type, Stripe);
+% filepath = fullfile(getenv('HOME'), 'Desktop', filename);
+% saveas(gcf, filepath);
