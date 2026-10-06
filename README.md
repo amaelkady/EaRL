@@ -1,4 +1,4 @@
-# NEW: You can now run EaRL in your browse through an [online app](https://amaelkady.github.io/earl-web-app/index.html)
+# NEW: You can now run EaRL in your browser through an [online app](https://amaelkady.github.io/earl-web-app/index.html)
 
 <p align="center">
   <img width="500" src="misc\Screenshot.png" alt="EaRL Main Console">
